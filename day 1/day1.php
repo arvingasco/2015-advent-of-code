@@ -55,6 +55,3 @@ class DayOneAdvent {
         return $file;
     }
 }
-
-
-

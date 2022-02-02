@@ -5,7 +5,7 @@ echo 'There are ' . $dayFive->partOne() . ' nice strings.';
 echo '<br>';
 echo 'There are ' . $dayFive->partTwo() . ' nice strings.';
 
-class DayFiveAdvent extends FileRead
+class DayFiveAdvent
 {
     function partOne(): int
     {
@@ -78,5 +78,17 @@ class DayFiveAdvent extends FileRead
             return true;
         }
         return false;
+    }
+
+    function readFile()
+    {
+        $file = fopen('input.txt', 'r');
+
+        if (!$file) {
+            echo 'Error opening file.';
+            return null;
+        }
+
+        return $file;
     }
 }

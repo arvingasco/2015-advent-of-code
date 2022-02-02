@@ -5,7 +5,8 @@ $dayTwo->totalWrappingPaper();
 echo '<br>';
 $dayTwo->totalRibbon();
 
-class DayTwoAdvent {
+class DayTwoAdvent extends FileRead
+{
     function totalWrappingPaper()
     {
         $adventFile = $this->readFile();
@@ -62,17 +63,5 @@ class DayTwoAdvent {
     function getVolume($length, $width, $height)
     {
         return $length*$width*$height;
-    }
-
-    function readFile()
-    {
-        $file = fopen('input.txt', 'r');
-
-        if (!$file) {
-            echo 'Error opening file.';
-            return null;
-        }
-
-        return $file;
     }
 }

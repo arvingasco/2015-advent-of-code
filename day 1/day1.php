@@ -5,7 +5,8 @@ $dayOne->findSantasFloor();
 echo '<br>';
 $dayOne->leadSantaToBasement();
 
-class DayOneAdvent {
+class DayOneAdvent extends FileRead
+{
     function findSantasFloor()
     {
         $adventFile = $this->readFile();
@@ -41,17 +42,5 @@ class DayOneAdvent {
                 break;
             }
         }
-    }
-
-    function readFile()
-    {
-        $file = fopen('input.txt', 'r');
-
-        if (!$file) {
-            echo 'Error opening file.';
-            return null;
-        }
-
-        return $file;
     }
 }

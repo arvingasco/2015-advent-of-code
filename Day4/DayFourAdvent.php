@@ -1,10 +1,10 @@
 <?php
-set_time_limit(0); //If set to zero, no time limit is imposed.
 
 $dayFour = new DayFourAdvent();
 echo $dayFour->challenge();
 
-class DayFourAdvent {
+class DayFourAdvent
+{
     function challenge(): string
     {
         $adventFile = $this->readFile();

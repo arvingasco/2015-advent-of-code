@@ -5,7 +5,8 @@ echo 'Santa visits ' . count($dayThree->getSantaUniqueHouses()) . ' uniques hous
 echo '<br>';
 echo 'Santa and robosanta visits ' . count($dayThree->getTotalUniqueHouses()) . ' unique houses';
 
-class DayThreeAdvent {
+class DayThreeAdvent
+{
     function getSantaUniqueHouses()
     {
         $adventFile = $this->readFile();

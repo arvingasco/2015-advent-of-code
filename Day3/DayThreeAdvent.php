@@ -72,8 +72,7 @@ class DayThreeAdvent
                 $y -= 1;
             }
 
-            $houseCoordinate = [$x, $y];
-            $houseCoordinates[] = $houseCoordinate;
+            $houseCoordinates[] = [$x, $y];
         }
 
         return $houseCoordinates;

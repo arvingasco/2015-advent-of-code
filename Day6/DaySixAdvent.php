@@ -4,6 +4,8 @@ set_time_limit(0);
 
 $daySix = new DaySixAdvent();
 echo json_encode($daySix->partOne());
+echo '<br>';
+echo json_encode($daySix->partTwo());
 
 class DaySixAdvent
 {
@@ -15,13 +17,13 @@ class DaySixAdvent
             $lineArray = preg_split('/\s+/', $line);
 
             if ($lineArray[0] === 'toggle') {
-                $this->command($lineArray, $lightMap, 'toggle');
+                $this->commandOne($lineArray, $lightMap, 'toggle');
             } else if ($lineArray[1] === 'on') {
                 array_splice($lineArray, 0, 2, 'turn on');
-                $this->command($lineArray, $lightMap, 'turn on');
+                $this->commandOne($lineArray, $lightMap, 'turn on');
             } else if ($lineArray[1] === 'off') {
                 array_splice($lineArray, 0, 2, 'turn off');
-                $this->command($lineArray, $lightMap, 'turn off');
+                $this->commandOne($lineArray, $lightMap, 'turn off');
             }
         }
 
@@ -33,6 +35,58 @@ class DaySixAdvent
         }
 
         return $count;
+    }
+
+    function partTwo()
+    {
+        $lightMap = $this->createLightMap();
+
+        foreach ($this->fileData() as $line) {
+            $lineArray = preg_split('/\s+/', $line);
+
+            if ($lineArray[0] === 'toggle') {
+                $this->commandTwo($lineArray, $lightMap, 'toggle');
+            } else if ($lineArray[1] === 'on') {
+                array_splice($lineArray, 0, 2, 'turn on');
+                $this->commandTwo($lineArray, $lightMap, 'turn on');
+            } else if ($lineArray[1] === 'off') {
+                array_splice($lineArray, 0, 2, 'turn off');
+                $this->commandTwo($lineArray, $lightMap, 'turn off');
+            }
+        }
+
+        $brightness = 0;
+        foreach ($lightMap as $coord) {
+            $brightness += $coord[2];
+        }
+
+        return $brightness;
+    }
+
+    function commandTwo($lineArray, $lightMap, $method)
+    {
+        $lightCoords = $this->extractCoords($lineArray);
+
+        for ($x = $lightCoords[0][0]; $x <= $lightCoords[1][0]; $x++) {
+            for ($y = $lightCoords[0][1]; $y <= $lightCoords[1][1]; $y++) {
+                $lightKey = array_search([$x, $y, 0], $lightMap);
+                if ($lightKey === false) {
+                    $lightKey = array_search([$x, $y, 1], $lightMap);
+                }
+
+                if ($method === 'toggle') {
+                    $lightMap[$lightKey][2] += 2;
+                }
+
+                if ($method === 'turn on' ) {
+                    $lightMap[$lightKey][2] += 1;
+                }
+
+                if ($method === 'turn off' && $lightMap[$lightKey][2] !== 0) {
+                    $lightMap[$lightKey][2] -= 1;
+                }
+            }
+        }
     }
 
     function createLightMap(): array
@@ -48,7 +102,7 @@ class DaySixAdvent
         return $lightArray;
     }
 
-    function command($lineArray, $lightMap, $method)
+    function commandOne($lineArray, $lightMap, $method)
     {
         $lightCoords = $this->extractCoords($lineArray);
 

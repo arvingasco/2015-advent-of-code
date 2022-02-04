@@ -3,6 +3,7 @@ ini_set('memory_limit', '1024M');
 set_time_limit(0);
 
 $daySix = new DaySixAdvent();
+
 echo json_encode($daySix->partOne());
 echo '<br>';
 echo json_encode($daySix->partTwo());
@@ -17,13 +18,13 @@ class DaySixAdvent
             $lineArray = preg_split('/\s+/', $line);
 
             if ($lineArray[0] === 'toggle') {
-                $this->commandOne($lineArray, $lightMap, 'toggle');
+                $lightMap = $this->commandOne($lineArray, $lightMap, 'toggle');
             } else if ($lineArray[1] === 'on') {
                 array_splice($lineArray, 0, 2, 'turn on');
-                $this->commandOne($lineArray, $lightMap, 'turn on');
+                $lightMap = $this->commandOne($lineArray, $lightMap, 'turn on');
             } else if ($lineArray[1] === 'off') {
                 array_splice($lineArray, 0, 2, 'turn off');
-                $this->commandOne($lineArray, $lightMap, 'turn off');
+                $lightMap = $this->commandOne($lineArray, $lightMap, 'turn off');
             }
         }
 
@@ -45,13 +46,13 @@ class DaySixAdvent
             $lineArray = preg_split('/\s+/', $line);
 
             if ($lineArray[0] === 'toggle') {
-                $this->commandTwo($lineArray, $lightMap, 'toggle');
+                $lightMap = $this->commandTwo($lineArray, $lightMap, 'toggle');
             } else if ($lineArray[1] === 'on') {
                 array_splice($lineArray, 0, 2, 'turn on');
-                $this->commandTwo($lineArray, $lightMap, 'turn on');
+                $lightMap = $this->commandTwo($lineArray, $lightMap, 'turn on');
             } else if ($lineArray[1] === 'off') {
                 array_splice($lineArray, 0, 2, 'turn off');
-                $this->commandTwo($lineArray, $lightMap, 'turn off');
+                $lightMap = $this->commandTwo($lineArray, $lightMap, 'turn off');
             }
         }
 
@@ -87,6 +88,7 @@ class DaySixAdvent
                 }
             }
         }
+        return $lightMap;
     }
 
     function createLightMap(): array
@@ -121,18 +123,19 @@ class DaySixAdvent
                     }
                 }
 
-                if ($method === 'turn on' && $lightMap[$lightKey][2] === 0) {
+                if ($method === 'turn on') {
                     $lightMap[$lightKey][2] = 1;
                 }
 
-                if ($method === 'turn off' && $lightMap[$lightKey][2] === 1) {
+                if ($method === 'turn off') {
                     $lightMap[$lightKey][2] = 0;
                 }
             }
         }
+        return $lightMap;
     }
 
-    function extractCoords($lineArray): array
+    function extractCoords($lineArray)
     {
         $firstCoords = explode(',', $lineArray[1]);
         $firstPoint = [intval($firstCoords[0]), intval($firstCoords[1]), 0];

@@ -80,7 +80,7 @@ class DaySevenAdvent
             }
         }
 
-        return $wireValues[$keyValueA];
+        return $wireValues;
     }
 
     /**
@@ -88,7 +88,7 @@ class DaySevenAdvent
      */
     function fileData(): Generator
     {
-        $file = fopen('input.txt', 'r');
+        $file = fopen('example.txt', 'r');
 
         if (!$file)
             die('file does not exist or cannot be opened');

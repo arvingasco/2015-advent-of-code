@@ -21,7 +21,7 @@ class DaySevenAdvent
 
         $allWires = array_values(array_unique($allWires));
 
-        foreach ($allWires as $wire) {
+        foreach ($allWires as $ignored) {
             $wireValues[] = 0;
         }
 
@@ -60,6 +60,7 @@ class DaySevenAdvent
             } else if ($method === 'NOT') {
                 $key2 = array_search($wires[1], $allWires);
                 $wireValues[$key2] = ~ $wireValues[$key1];
+                $wireValues[$key2] = (($wireValues[$key2] % 65536) + 65536) % 65536;
 
             } else if ($method === 'LSHIFT') {
                 $key2 = array_search($wires[1], $allWires);
@@ -79,7 +80,7 @@ class DaySevenAdvent
             }
         }
 
-        return $wireValues[$keyValueA];
+        return $wireValues;
     }
 
     /**
@@ -87,7 +88,7 @@ class DaySevenAdvent
      */
     function fileData(): Generator
     {
-        $file = fopen('input.txt', 'r');
+        $file = fopen('example.txt', 'r');
 
         if (!$file)
             die('file does not exist or cannot be opened');

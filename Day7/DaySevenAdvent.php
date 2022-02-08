@@ -21,11 +21,11 @@ class DaySevenAdvent
 
         $allWires = array_values(array_unique($allWires));
 
-        foreach ($allWires as $wire) {
+        foreach ($allWires as $ignored) {
             $wireValues[] = 0;
         }
 
-        $keyValueA = array_search('a', $allWires);
+        $keyValueA = array_search('x', $allWires);
 
         foreach ($this->fileData() as $line) {
             preg_match_all('/[a-z]+/', $line, $wires);
@@ -60,6 +60,7 @@ class DaySevenAdvent
             } else if ($method === 'NOT') {
                 $key2 = array_search($wires[1], $allWires);
                 $wireValues[$key2] = ~ $wireValues[$key1];
+                $wireValues[$key2] = (($wireValues[$key2] % 65536) + 65536) % 65536;
 
             } else if ($method === 'LSHIFT') {
                 $key2 = array_search($wires[1], $allWires);

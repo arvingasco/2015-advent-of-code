@@ -1,0 +1,10 @@
+'lx -> a',
+'lw OR lv -> lx',
+'lc LSHIFT 1 -> lw',
+'lb OR la -> lc',
+'kh RSHIFT 1 -> lb',
+'40 -> kh',
+'1 AND lu -> lv',
+'NOT x -> lu',
+'12312412412 -> x',
+'896 -> la'

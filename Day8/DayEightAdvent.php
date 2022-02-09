@@ -1,7 +1,8 @@
 <?php
 
 $dayEight = new DayEightAdvent();
-echo $dayEight->partOne();
+//echo $dayEight->partOne();
+echo $dayEight->partTwo();
 
 class DayEightAdvent
 {
@@ -24,6 +25,39 @@ class DayEightAdvent
         }
         return $totalLiteralChar - $totalStringChar;
     }
+
+    function partTwo()
+    {
+        $totalLiteralChar = 0;
+        $totalEncodedChar = 0;
+
+        foreach ($this->fileData() as $line) {
+            $stringLiteral = trim($line);
+            $totalLiteralChar += (strlen($stringLiteral));
+
+            $string = preg_replace('/\\\x[a-f0-9]{2}/', '@', $stringLiteral);
+
+            $characters = str_split($string);
+            $i = 0;
+            foreach ($characters as $character) {
+                $totalEncodedChar += 1;
+
+                if ($character === '"' && $i === 0) {
+                    $totalEncodedChar += 2;
+                } else if ($character === '"' && $i === count($characters) - 1) {
+                    $totalEncodedChar += 2;
+                } else if ($character === '@') {
+                    $totalEncodedChar += 4;
+                } else if ($character === '\\') {
+                    $totalEncodedChar += 2;
+                }
+
+                $i += 1;
+            }
+        }
+        return $totalEncodedChar - $totalLiteralChar;
+    }
+
 
     /**
      * @return Generator

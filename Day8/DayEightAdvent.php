@@ -38,9 +38,7 @@ class DayEightAdvent
 
             $characters = str_split($stringLiteral);
             foreach ($characters as $character) {
-                if ($character === '"') {
-                    $totalEncodedChar += 2;
-                } else if ($character === '\\') {
+                if ($character === '"' || $character === '\\') {
                     $totalEncodedChar += 2;
                 } else {
                     $totalEncodedChar += 1;

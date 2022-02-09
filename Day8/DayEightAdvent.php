@@ -1,7 +1,8 @@
 <?php
 
 $dayEight = new DayEightAdvent();
-//echo $dayEight->partOne();
+echo $dayEight->partOne();
+echo '<br>';
 echo $dayEight->partTwo();
 
 class DayEightAdvent
@@ -35,29 +36,20 @@ class DayEightAdvent
             $stringLiteral = trim($line);
             $totalLiteralChar += (strlen($stringLiteral));
 
-            $string = preg_replace('/\\\x[a-f0-9]{2}/', '@', $stringLiteral);
-
-            $characters = str_split($string);
-            $i = 0;
+            $characters = str_split($stringLiteral);
             foreach ($characters as $character) {
-                $totalEncodedChar += 1;
-
-                if ($character === '"' && $i === 0) {
+                if ($character === '"') {
                     $totalEncodedChar += 2;
-                } else if ($character === '"' && $i === count($characters) - 1) {
-                    $totalEncodedChar += 2;
-                } else if ($character === '@') {
-                    $totalEncodedChar += 4;
                 } else if ($character === '\\') {
                     $totalEncodedChar += 2;
+                } else {
+                    $totalEncodedChar += 1;
                 }
-
-                $i += 1;
             }
+            $totalEncodedChar += 2;
         }
         return $totalEncodedChar - $totalLiteralChar;
     }
-
 
     /**
      * @return Generator

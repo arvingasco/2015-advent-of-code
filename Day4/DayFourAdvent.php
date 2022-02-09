@@ -14,8 +14,9 @@ class DayFourAdvent
 
         $hexadecimal = 0;
         $needle = '00000';
-        while (!str_starts_with(md5($puzzleInput . $hexadecimal), $needle))
+        while (!str_starts_with(md5($puzzleInput . $hexadecimal), $needle)) {
             $hexadecimal += 1;
+        }
         return $hexadecimal;
     }
 
@@ -26,8 +27,9 @@ class DayFourAdvent
 
         $hexadecimal = 0;
         $needle = '000000';
-        while (!str_starts_with(md5($puzzleInput . $hexadecimal), $needle))
+        while (!str_starts_with(md5($puzzleInput . $hexadecimal), $needle)) {
             $hexadecimal += 1;
+        }
         return $hexadecimal;
     }
 

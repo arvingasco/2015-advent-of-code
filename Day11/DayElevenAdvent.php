@@ -1,14 +1,16 @@
 <?php
-ini_set('max_execution_time', 0);
 
 $day11 = new DayElevenAdvent();
-echo 'Santa\'s new password is ' . $day11->partOne();
+echo 'Santa\'s new password (part one) is ' . $day11->challenge('vzbxkghb') . '<br>';
+echo 'Santa\'s new password (part two) is ' . $day11->challenge('vzbxxyzz');
 
 class DayElevenAdvent
 {
-    function partOne(): string
+    function challenge($input): string
     {
-        $input = 'vzbxkghb';
+        if ($input === 'vzbxxyzz') {
+            $input++;
+        }
 
         $valid = 0;
         while ($valid !== 3) {

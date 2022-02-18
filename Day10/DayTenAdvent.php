@@ -23,7 +23,7 @@ class DayTenAdvent
 
     function lookAndSay($input): string
     {
-        preg_match_all('/(.)\1*/', $input, $matches);
+        preg_match_all('/([0-9])\1*/', $input, $matches);
         $numbers = $matches[0];
 
         $i = 0;

@@ -18,7 +18,7 @@ class DayTenAdvent
             $input = $this->lookAndSay($input);
         }
 
-        return strlen(trim($input));
+        return strlen($input);
     }
 
     function lookAndSay($input): string
@@ -30,7 +30,7 @@ class DayTenAdvent
         foreach ($numbers as $number) {
             $quantity = strlen($number);
 
-            for ($j = 0; $j <= 3; $j++) {
+            for ($j = 0; $j <= 9; $j++) {
                 if (str_contains($number, strval($j)) === true) {
                     $numbers[$i] = $quantity . $j;
                 }
@@ -41,5 +41,4 @@ class DayTenAdvent
 
         return implode('', $numbers);
     }
-
 }

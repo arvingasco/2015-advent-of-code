@@ -7,9 +7,9 @@ class DayTenAdvent
 {
     function partOne()
     {
-        $input = 3113322113;
+        $input = '3113322113';
 
-        for ($n = 0; $n <= 40; $n++) {
+        for ($n = 1; $n <= 40; $n++) {
             $input = $this->lookAndSay($input);
         }
 

@@ -1,22 +1,27 @@
 <?php
+ini_set('memory_limit', '-1');
 
 $dayTen = new DayTenAdvent();
-echo 'String length after 40 iterations = ' . $dayTen->partOne();
+/**
+ *  Only run challenge method once! It takes up a LOT of memory!
+ */
+echo 'String length after 40 iterations = ' . $dayTen->challenge(40) . '<br>';
+echo 'String length after 50 iterations = ' . $dayTen->challenge(50);
 
 class DayTenAdvent
 {
-    function partOne()
+    function challenge($iterations): int
     {
         $input = '3113322113';
 
-        for ($n = 1; $n <= 40; $n++) {
+        for ($n = 1; $n <= $iterations; $n++) {
             $input = $this->lookAndSay($input);
         }
 
         return strlen(trim($input));
     }
 
-    function lookAndSay($input)
+    function lookAndSay($input): string
     {
         preg_match_all('/(.)\1*/', $input, $matches);
         $numbers = $matches[0];

@@ -11,7 +11,6 @@ $json = json_decode($json);
 
 echo 'The sum of all the numbers (part two) is ' . $day12->partTwo($json) . '.<br>';
 
-
 class Day12Advent
 {
     function partOne(): int
